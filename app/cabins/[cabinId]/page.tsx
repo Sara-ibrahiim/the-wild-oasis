@@ -1,4 +1,4 @@
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
@@ -14,12 +14,18 @@ import Image from "next/image";
 //   image:
 //     "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/cabin-images/cabin-001.jpg",
 // };
-export async function generateMetadata({params}:any){
-    const {name} = await getCabin(params.cabinId)
-    return{title:`Cabin ${name}`}
+export async function generateMetadata({ params }: any) {
+  const { name } = await getCabin(params.cabinId);
+  return { title: `Cabin ${name}` };
 }
-export default async function Page({params}:any) {
-    const cabin = await getCabin(params.cabinId)
+
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  const ids = cabins.map((cabin: any) => ({cabinId: String(cabin.id)}));
+  return ids;
+}
+export default async function Page({ params }: any) {
+  const cabin = await getCabin(params.cabinId);
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
 
@@ -27,7 +33,12 @@ export default async function Page({params}:any) {
     <div className="max-w-6xl mx-auto mt-8">
       <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
         <div className="relative scale-[1.15] -translate-x-3">
-          <Image fill className="object-cover" src={image} alt={`Cabin ${name}`} />
+          <Image
+            fill
+            className="object-cover"
+            src={image}
+            alt={`Cabin ${name}`}
+          />
         </div>
 
         <div>
