@@ -3,7 +3,7 @@ import Link from "next/link";
 import bg from "@/public/bg.png"
 export default function Home() {
   return (
-   
+   //cabins
  <div>
       <main className="mt-24">
       <Image src={bg} fill className="object-cover object-top" quality={80} placeholder="blur" alt="Mountains and forests with two cabins" />
