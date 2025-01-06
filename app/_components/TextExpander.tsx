@@ -1,6 +1,7 @@
+"use client"
 import { useState } from 'react';
 
-function TextExpander({ children }) {
+function TextExpander({ children }:any) {
   const [isExpanded, setIsExpanded] = useState(false);
   const displayText = isExpanded
     ? children
