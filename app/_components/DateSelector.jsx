@@ -10,15 +10,15 @@ function isAlreadyBooked(range, datesArr) {
   return (
     range.from &&
     range.to &&
-    datesArr.some((date:Date) =>
+    datesArr.some((date) =>
       isWithinInterval(date, { start: range.from, end: range.to })
     )
   );
 }
 
-export function DateSelector({settings,bookedDates,cabin}:any) {
+export function DateSelector({settings,bookedDates,cabin}) {
   // CHANGE
- const {range , setRange , resetRange} : any = useReservation ()
+ const {range , setRange , resetRange} = useReservation ()
   const regularPrice = 23;
   const discount = 23;
   const numNights = 23;

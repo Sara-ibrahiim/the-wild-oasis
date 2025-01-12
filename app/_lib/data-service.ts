@@ -1,8 +1,9 @@
 import { eachDayOfInterval } from 'date-fns';
 import { supabase } from './supabase'; 
 import { notFound } from 'next/navigation';
+import { GuestObject } from './type';
 /////////////
-// GET
+
 
 export async function getCabin(id) {
   const { data, error } = await supabase
@@ -51,11 +52,11 @@ export const getCabins = async function () {
 };
 
 // Guests are uniquely identified by their email address
-export async function getGuest(email) {
+export async function getGuest(email : string) {
   const { data, error } = await supabase
-    .from('guests')
-    .select('*')
-    .eq('email', email)
+    .from("guests")
+    .select("*")
+    .eq("email", email)
     .single();
 
   // No error here! We handle the possibility of no guest in the sign in callback
@@ -77,7 +78,7 @@ export async function getBooking(id) {
   return data;
 }
 
-export async function getBookings(guestId) {
+export async function getBookings(guestId: string) {
   const { data, error, count } = await supabase
     .from('bookings')
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
@@ -88,7 +89,7 @@ export async function getBookings(guestId) {
     .order('startDate');
 
   if (error) {
-    console.error(error);
+    console.log(error);
     throw new Error('Bookings could not get loaded');
   }
 
@@ -147,11 +148,25 @@ export async function getCountries() {
     throw new Error('Could not fetch countries');
   }
 }
+// export async function getCountries(): Promise<Country[]> {
+//   try {
+//     const res = await fetch('https://restcountries.com/v2/all?fields=name,flag');
+
+//     if (!res.ok) {
+//       throw new Error('Failed to fetch countries');
+//     }
+
+//     const countries: Country[] = await res.json(); // Type the response as an array of Country
+//     return countries;
+//   } catch (error) {
+//     throw new Error('Could not fetch countries');
+//   }
+// }
 
 /////////////
 // CREATE
 
-export async function createGuest(newGuest) {
+export async function createGuest(newGuest: GuestObject) {
   const { data, error } = await supabase.from('guests').insert([newGuest]);
 
   if (error) {
@@ -182,6 +197,8 @@ export async function createBooking(newBooking) {
 // UPDATE
 
 // The updatedFields is an object which should ONLY contain the updated data
+
+/*
 export async function updateGuest(id, updatedFields) {
   const { data, error } = await supabase
     .from('guests')
@@ -224,3 +241,4 @@ export async function deleteBooking(id) {
   }
   return data;
 }
+  */
