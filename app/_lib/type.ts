@@ -22,8 +22,8 @@ export type ButtonProps = {
 export type CabinProps = { cabin: CabinObject };
 export type CabinCardProps = { cabin: CabinObject };
 export type DeleteReservationProps = {
-  bookingId: string;
-  onDelete: (bookingId: string) => Promise<void>;
+  bookingId?: string;
+  deleteReservation?: (bookingId: string) => Promise<void>;
 };
 export type HamburgerProps = {
   onClick: () => void;

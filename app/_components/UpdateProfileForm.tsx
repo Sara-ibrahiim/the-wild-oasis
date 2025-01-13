@@ -3,7 +3,6 @@ import { useState } from "react";
 import { updateGuest } from "../_lib/actions";
 import { UpdateProfileFormProps } from "../_lib/type";
 import Image from "next/image";
-import ButtonUpdate from "./ButtonUpdate";
 import SubmitButton from "./SubmitButton";
 
 export default function UpdateProfileForm({
@@ -66,7 +65,7 @@ export default function UpdateProfileForm({
 
       <div className="flex justify-end items-center gap-6">
         <SubmitButton pendingLabel="Updating...">Update profile</SubmitButton>
-        {/* <ButtonUpdate pendingLabel="Updating..."> Update profile</ButtonUpdate> */}
+
       </div>
     </form>
   );
