@@ -3,13 +3,13 @@ import { updateBooking } from "@/app/_lib/actions";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 import { BookingIdPageParams } from "@/app/_lib/type";
 
-export default async function Page({params}:BookingIdPageParams) {
-  const {bookingId} = params;
-  const {numGuests , observations , cabinId} = await getBooking(bookingId)
+export default async function Page({ params }: BookingIdPageParams) {
+  const { bookingId } = params;
+  const { numGuests, observations, cabinId } = await getBooking(bookingId);
 
   // CHANGE
 
-  const {maxCapacity} = await getCabin(cabinId)
+  const { maxCapacity } = await getCabin(cabinId);
 
   return (
     <div>
@@ -17,8 +17,11 @@ export default async function Page({params}:BookingIdPageParams) {
         Edit Reservation #{bookingId}
       </h2>
 
-      <form action={updateBooking} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
-        <input type="hidden" value={bookingId} name="bookingId"/>
+      <form
+        action={updateBooking}
+        className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      >
+        <input type="hidden" value={bookingId} name="bookingId" />
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -51,7 +54,10 @@ export default async function Page({params}:BookingIdPageParams) {
         </div>
 
         <div className="flex justify-end items-center gap-6">
-        <SubmitButton pendingLabel="Updating...">Update reservation</SubmitButton>  </div>
+          <SubmitButton pendingLabel="Updating...">
+            Update reservation
+          </SubmitButton>{" "}
+        </div>
       </form>
     </div>
   );

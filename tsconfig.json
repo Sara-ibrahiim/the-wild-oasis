@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/_components/DeleteReservation.tsx"
-, "app/cabins/loading.js", "app/loading.tsx", "app/_lib/auth.ts", "app/_components/ButtonUpdate.tsx", "app/_components/DateSelector.jsx"  ],
+, "app/cabins/loading.js", "app/loading.tsx", "app/_lib/auth.ts", "app/_components/ButtonUpdate.tsx", "app/_components/DateSelector.tsx"  ],
   "exclude": ["node_modules"]
 }

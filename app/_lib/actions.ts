@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { supabase } from "@/app/_lib/supabase";
 import { getBookings } from "./data-service";
-import { redirect } from "next/navigation";
+
 
 // export async function updateGuest(formData: FormData) {
 // const session = auth()

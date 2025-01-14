@@ -13,11 +13,11 @@ const authConfig = {
   ],
   // Callbacks for middleware
   callbacks: {
-    authorized({ auth, request }) {
+    authorized({ auth }) {
       return !!auth?.user;
     },
     // Function that runs before user actually log in (kinda like middleware)
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         // Getting the guest data from Database
         const existingGuest = await getGuest(user.email);
