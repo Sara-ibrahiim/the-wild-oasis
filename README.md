@@ -3,7 +3,7 @@ Introduction
 
 
 
-A web application built with Next.js for managing luxury cabin bookings in the Italian countryside. The platform allows users to browse, search, book, modify, and cancel cabin reservations. It offers a seamless experience, real-time browsing, filtering, and searching options based on various criteria like guest count.
+A web application built with Next.js for managing luxury cabin bookings in the Italian countryside.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Technologies:
 
