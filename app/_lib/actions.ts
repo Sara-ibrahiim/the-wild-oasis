@@ -41,7 +41,7 @@ export async function updateGuest(formData: FormData) {
   }
 
   // Revalidating path to get rid of caching
-  revalidatePath("/account/profile");
+  redirect("/account/profile");
 }
 
 export async function createBooking(

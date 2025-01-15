@@ -1,4 +1,4 @@
-"use client";
+
 import { updateGuest } from "../_lib/actions";
 import { UpdateProfileFormProps } from "../_lib/type";
 import Image from "next/image";
@@ -8,8 +8,6 @@ export default function UpdateProfileForm({
   children,
   guest,
 }: UpdateProfileFormProps) {
-
-
   const { fullName, email, nationalID, countryFlag } = guest;
 
   return (
@@ -68,5 +66,3 @@ export default function UpdateProfileForm({
     </form>
   );
 }
-
-
