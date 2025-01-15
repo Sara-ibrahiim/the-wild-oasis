@@ -1,6 +1,7 @@
+import { NextRequest } from "next/server";
 import { getBookedDatesByCabinId, getCabin } from "../../../_lib/data-service";
 
-export async function GET (request : any, { params } :any) {
+export async function GET (request : NextRequest, { params } : {params: { cabinId: string }}) {
   const { cabinId } = params;
   try {
     const [cabin, bookedDates] = await Promise.all([
