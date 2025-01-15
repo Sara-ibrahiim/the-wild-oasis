@@ -46,5 +46,7 @@
   .rdp-nav{
     display: none !important;
   }
-  
+  .rdp-dropdown{
+    color: theme("colors.primary.900");
+  }
 }

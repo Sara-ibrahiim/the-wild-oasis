@@ -5,7 +5,7 @@ import { GuestObject } from './type';
 /////////////
 
 
-export async function getCabin(id) {
+export async function getCabin(id:string) {
   const { data, error } = await supabase
     .from('cabins')
     .select('*')
@@ -23,7 +23,7 @@ export async function getCabin(id) {
   return data;
 }
 
-export async function getCabinPrice(id) {
+export async function getCabinPrice(id:string) {
   const { data, error } = await supabase
     .from('cabins')
     .select('regularPrice, discount')
@@ -96,17 +96,17 @@ export async function getBookings(guestId:string) {
   return data;
 }
 
-export async function getBookedDatesByCabinId(cabinId) {
+export async function getBookedDatesByCabinId(cabinId:string) {
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0);
-  today = today.toISOString();
+  const todayISO = today.toISOString();
 
   // Getting all bookings
   const { data, error } = await supabase
     .from('bookings')
     .select('*')
     .eq('cabinId', cabinId)
-    .or(`startDate.gte.${today},status.eq.checked-in`);
+    .or(`startDate.gte.${todayISO},status.eq.checked-in`);
 
   if (error) {
     console.error(error);
@@ -177,21 +177,21 @@ export async function createGuest(newGuest: GuestObject) {
   return data;
 }
 
-export async function createBooking(newBooking) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .insert([newBooking])
-    // So that the newly created object gets returned!
-    .select()
-    .single();
+// export async function createBooking(newBooking) {
+//   const { data, error } = await supabase
+//     .from('bookings')
+//     .insert([newBooking])
+//     // So that the newly created object gets returned!
+//     .select()
+//     .single();
 
-  if (error) {
-    console.error(error);
-    throw new Error('Booking could not be created');
-  }
+//   if (error) {
+//     console.error(error);
+//     throw new Error('Booking could not be created');
+//   }
 
-  return data;
-}
+//   return data;
+// }
 
 /////////////
 // UPDATE

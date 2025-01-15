@@ -6,9 +6,9 @@ export interface Data {
   range?: any;
   resetRange?: () => void;
 }
-interface Range{
-  from?:Date  | undefined
-  to?:Date  | undefined
+interface Range {
+  from?: Date | undefined;
+  to?: Date | undefined;
 }
 const ReservationContext = createContext<Data | null>(null);
 const initialState = { from: undefined, to: undefined };

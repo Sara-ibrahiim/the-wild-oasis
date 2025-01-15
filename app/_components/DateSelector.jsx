@@ -6,26 +6,28 @@ import {
   isSameDay,
   isWithinInterval,
 } from "date-fns";
-import { useState } from "react";
+
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { Data, useReservation } from "./ReservationContext";
-import { difference } from "next/dist/build/utils";
+import { useReservation } from "./ReservationContext";
 
-function isAlreadyBooked({range, datesArr}: any) {
+function isAlreadyBooked({ range, datesArr }) {
+  if (!range?.from || !range?.to) return false;
+
   return (
     range.from &&
     range.to &&
-    datesArr.some((date: Date) =>
+    datesArr.some((date) =>
       isWithinInterval(date, { start: range.from, end: range.to })
     )
   );
 }
 
-export function DateSelector({ settings, bookedDates, cabin }:any) {
+export function DateSelector({ settings, bookedDates, cabin }) {
   // CHANGE
-  const { range, setRange, resetRange } :any = useReservation();
-const displayRange = isAlreadyBooked(range, bookedDates ) ? {} : range;
+  const { range, setRange, resetRange } = useReservation();
+
+  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
   // const range = { from: null, to: null };
   const { regularPrice, discount } = cabin;
   const numNights = differenceInDays(displayRange.to, displayRange.from);
@@ -38,9 +40,9 @@ const displayRange = isAlreadyBooked(range, bookedDates ) ? {} : range;
       <DayPicker
         className="pt-12 place-self-center ps-2 "
         mode="range"
-        min={minBookingLength + 1}
         onSelect={setRange}
         selected={displayRange}
+        min={minBookingLength + 1}
         max={maxBookingLength}
         fromMonth={new Date()}
         fromDate={new Date()}
@@ -49,7 +51,7 @@ const displayRange = isAlreadyBooked(range, bookedDates ) ? {} : range;
         numberOfMonths={2}
         disabled={(curDate) =>
           isPast(curDate) ||
-          bookedDates.some((date :Date) => isSameDay(date, curDate))
+          bookedDates.some((date) => isSameDay(date, curDate))
         }
       />
 

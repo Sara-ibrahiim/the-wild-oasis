@@ -1,14 +1,32 @@
 "use client";
 
+import { differenceInDays } from "date-fns";
 import { useReservation } from "./ReservationContext";
+import { createBooking } from "../_lib/actions";
+import { ReservationFormProps } from "../_lib/type";
+import SubmitButton from "./SubmitButton";
 
-export function ReservationForm({ cabin , user}:any) {
+export function ReservationForm({ cabin, user }: ReservationFormProps) {
   // CHANGE
-  const { maxCapacity } = cabin;
-  const { range }: any = useReservation();
-  if (!range) {
-    return <div>Loading...</div>; // Or handle the case when range is not available yet
-  }
+  const { range, resetRange }: any = useReservation();
+  const { maxCapacity, regularPrice, discount, id } = cabin;
+
+  const startDate = range.from;
+  const endDate = range.to;
+  const numNights = differenceInDays(endDate, startDate);
+  const cabinPrice = numNights * (regularPrice - discount);
+
+  const bookingData = {
+    startDate,
+    endDate,
+    numNights,
+    cabinPrice,
+    cabinId: id,
+  };
+  const createBookingWithData = createBooking.bind(null, bookingData);
+  // if (!range) {
+  //   return <div>Loading...</div>; // Or handle the case when range is not available yet
+  // }
 
   return (
     <div className="scale-[1.01]">
@@ -17,19 +35,26 @@ export function ReservationForm({ cabin , user}:any) {
         {/* {range.from && <p>From: {range.from.toLocaleDateString()}</p>}
         {range.to && <p>To: {range.to.toLocaleDateString()}</p>} */}
 
-        <div className='flex gap-4 items-center'>
+        <div className="flex gap-4 items-center">
           <img
             // Important to display google profile images
-            referrerPolicy='no-referrer'
-            className='h-8 rounded-full'
+            referrerPolicy="no-referrer"
+            className="h-8 rounded-full"
             src={user.image}
             alt={user.name}
           />
           <p>{user.name}</p>
-        </div> 
+        </div>
       </div>
 
-      <form className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col">
+      <form
+        //action={createBookingWithData}
+        action={async (formData) => {
+          await createBookingWithData(formData);
+          resetRange();
+        }}
+        className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col"
+      >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -62,11 +87,13 @@ export function ReservationForm({ cabin , user}:any) {
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <p className="text-primary-300 text-base">Start by selecting dates</p>
-
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Reserve now
-          </button>
+          {!(startDate && endDate) ? (
+            <p className="text-primary-300 text-base">
+              Start by selecting dates
+            </p>
+          ) : (
+            <SubmitButton pendingLabel="Reserving...">Reserve now</SubmitButton>
+          )}
         </div>
       </form>
     </div>
