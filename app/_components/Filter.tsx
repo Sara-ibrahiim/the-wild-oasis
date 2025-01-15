@@ -8,7 +8,7 @@ export default function Filter() {
   const pathname = usePathname();
   const activeFilter = searchParams.get("capacity") ?? "all";
 
-  function handelFilter(filter: any) {
+  function handelFilter(filter: string) {
     const params = new URLSearchParams(searchParams);
     params.set("capacity", filter);
     router.replace(`${pathname}?${params.toString()}`);

@@ -1,10 +1,9 @@
-import CabinCard from "@/app/_components/CabinCard";
-import { getCabins } from "../_lib/data-service";
 import CabinList from "../_components/CabinList";
 import { Suspense } from "react";
 import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
 import ReservationReminder from "../_components/ReservationReminder";
+import { CabinsPageParams } from "../_lib/type";
 export const revalidate = 3600;
 export const metadata={
     title: "Cabins",
@@ -12,7 +11,7 @@ export const metadata={
   };
 
 
-  export default async function Page({searchParams}: any) {
+  export default async function Page({searchParams}: CabinsPageParams) {
     const filter = searchParams?.capacity?? "all";
   
     // CHANGE
@@ -27,22 +26,13 @@ export const metadata={
           Cozy yet luxurious cabins, located right in the heart of the Italian
           Dolomites. Imagine waking up to beautiful mountain views, spending your
           days exploring the dark forests around, or just relaxing in your private
-          hot tub under the stars. Enjoy nature's beauty in your own little home
+          hot tub under the stars. Enjoy nature&apos;s beauty in your own little home
           away from home. The perfect spot for a peaceful, calm vacation. Welcome
           to paradise.
         </p>
         <div className="flex justify-end mb-8">
         <Filter/>
         </div>
-    
-  
-        {/* {cabins.length > 0 && (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-            {cabins.map((cabin:any) => (
-              <CabinCard cabin={cabin} key={cabin.id} />
-            ))}
-          </div>
-        )} */}
         <Suspense fallback={<Spinner/> } key={filter}>
         <CabinList filter ={filter}/>
         <ReservationReminder/>

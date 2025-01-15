@@ -4,7 +4,7 @@ import TextExpander from "./TextExpander";
 import { CabinProps } from "../_lib/type";
 
 export default function Cabin({ cabin }:CabinProps) {
-  const { id, name, maxCapacity, regularPrice, discount, image, description } =
+  const {  name, maxCapacity, image, description } =
     cabin;
   return (
     <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
