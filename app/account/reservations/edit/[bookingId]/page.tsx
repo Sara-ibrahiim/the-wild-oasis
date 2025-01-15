@@ -1,9 +1,9 @@
 import SubmitButton from "@/app/_components/SubmitButton";
 import { updateBooking } from "@/app/_lib/actions";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
-import { BookingIdPageParams } from "@/app/_lib/type";
-
-export default async function Page({ params }: BookingIdPageParams) {
+export default async function Page({ params }: { params: {
+  bookingId: string;
+};}) {
   const { bookingId } = params;
   const { numGuests, observations, cabinId } = await getBooking(bookingId);
 
