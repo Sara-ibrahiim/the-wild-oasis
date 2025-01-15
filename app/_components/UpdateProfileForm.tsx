@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { updateGuest } from "../_lib/actions";
 import { UpdateProfileFormProps } from "../_lib/type";
 import Image from "next/image";
@@ -9,9 +8,9 @@ export default function UpdateProfileForm({
   children,
   guest,
 }: UpdateProfileFormProps) {
-  const [count, setCount] = useState();
 
-  const { fullName, email, nationality, nationalID, countryFlag } = guest;
+
+  const { fullName, email, nationalID, countryFlag } = guest;
 
   return (
     <form

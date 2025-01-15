@@ -53,7 +53,7 @@ export const getCabins = async function () {
 
 // Guests are uniquely identified by their email address
 export async function getGuest(email : string) {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("guests")
     .select("*")
     .eq("email", email)
@@ -64,7 +64,7 @@ export async function getGuest(email : string) {
 }
 
 export async function getBooking(id:string) {
-  const { data, error, count } = await supabase
+  const { data, error } = await supabase
     .from('bookings')
     .select('*')
     .eq('id', id)
@@ -97,7 +97,7 @@ export async function getBookings(guestId:string) {
 }
 
 export async function getBookedDatesByCabinId(cabinId:string) {
-  let today = new Date();
+  const today = new Date();
   today.setUTCHours(0, 0, 0, 0);
   const todayISO = today.toISOString();
 

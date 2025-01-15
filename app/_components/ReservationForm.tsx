@@ -8,12 +8,12 @@ import SubmitButton from "./SubmitButton";
 
 export function ReservationForm({ cabin, user }: ReservationFormProps) {
   // CHANGE
-  const { range, resetRange }: any = useReservation();
+  const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
   const startDate = range.from;
   const endDate = range.to;
-  const numNights = differenceInDays(endDate, startDate);
+  const numNights =  startDate && endDate ? Math.abs(differenceInDays(startDate, endDate)) : 0;
   const cabinPrice = numNights * (regularPrice - discount);
 
   const bookingData = {

@@ -32,7 +32,7 @@ const authConfig = {
       }
     },
     // Assigning guest ID to the session. Runs after sign in callback
-    async session({session, user }) {
+    async session({session }) {
       const guest = await getGuest(session.user.email);
       session.user.guestId = guest.id;
       return session;

@@ -7,7 +7,7 @@ import { ReservationCardProps } from "../_lib/type";
 import DeleteReservation from "./DeleteReservation";
 
 
-export const formatDistanceFromNow = (dateStr:any) =>
+export const formatDistanceFromNow = (dateStr:string) =>
   formatDistance(parseISO(dateStr), new Date(), {
     addSuffix: true,
   }).replace("about ", "");
@@ -15,7 +15,6 @@ export const formatDistanceFromNow = (dateStr:any) =>
 function ReservationCard({ booking, onDelete }:ReservationCardProps) {
   const {
     id,
-    guestId,
     startDate,
     endDate,
     numNights,
