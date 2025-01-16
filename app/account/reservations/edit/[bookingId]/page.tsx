@@ -59,6 +59,7 @@ export default async function Page({ params }: BookingIdPageParams) {
           </SubmitButton>{" "}
         </div>
       </form>
+      
     </div>
   );
 }

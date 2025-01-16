@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: CabinIdPageParams) {
 
 export async function generateStaticParams() {
   const cabins = await getCabins();
-  const ids = cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
+  const ids = cabins.map((cabin: any) => ({ cabinId: String(cabin.id) }));
   return ids;
 }
 export default async function Page({ params }: CabinIdPageParams) {

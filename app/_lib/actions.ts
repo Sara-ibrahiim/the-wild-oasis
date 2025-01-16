@@ -54,7 +54,7 @@ export async function createBooking(
     ...bookingData,
     guestId: session.user.guestId,
     numGuests: Number(formData.get("numGuests")),
-    observations: formData.get("observations")?.slice(0, 1000),
+    observations: formData.get("observations")?.slice(0,1000),
     extrasPrice: 0,
     totalPrice: bookingData.cabinPrice,
     isPaid: false,
