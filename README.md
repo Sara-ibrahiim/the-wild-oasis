@@ -7,12 +7,12 @@ A web application built with Next.js for managing luxury cabin bookings in the I
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Technologies:
 
--Next.js
--next-auth
--Tailwind CSS
--react-day-picker
--heroicons/react
--date-fns
+Next.js
+,next-auth
+,Tailwind CSS
+,react-day-picker
+,heroicons/react
+,date-fns
 
 Business Features:
 
