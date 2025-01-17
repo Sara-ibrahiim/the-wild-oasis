@@ -10,10 +10,9 @@ Technologies:
 Next.js
 next-auth
 Tailwind CSS
-react-day-picker 
+react-day-picker
 heroicons/react
 date-fns
-
 
 Business Features:
 
